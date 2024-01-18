@@ -6,6 +6,13 @@ Startup application for BYU CS 260
 ### Elevator pitch
 Have you ever wished that Pokémon were real? Have you ever thought: "*oh man, I really want to own and control fantastical, powerful creatures and make them fight each other*"? That's a little messed up, but if that's what you're into, then I have four words for you: **Great. Value. Pokémon. Stadium.** This web application will allow you to select a team of Pokémon, join a lobby, see the list of moves available to the Pokémon you chose, and battle your friends' teams. As the user selects a move, the opponent will be notified and the calculated damage will be applied in real time. If you manage to defeat all of your opponent's Pokémons, you win!
 
+### Design
+After successful login, the user will see a list of Pokémon to select for their team:
+![List of Pokemon](images/readme/pokemon_list.png)
+
+Once a team is selected and another player has joined the lobby, the battle page will be displayed:
+![Pokemon battle](images/readme/pokemon_battle.png)
+
 ### Key features
 - Secure login using HTTPS.
 - Display of a list of Pokémon, with their respective names and pictures.
