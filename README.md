@@ -39,5 +39,15 @@ Once a team is selected and another player has joined the lobby, the battle page
 - **WebSocket:** It will provide real time notifications to the users about moves selected, damage inflicted, and game winner.
 - **React:** It will provide the framework that will enable users to interact with the web application.
 
+## HTML Deliverable
+For this deliverable, I built the main HTML structure for my application.
+- **HTML:** Added four HTML pages to provide the ability to log in, select a team of Pokémon, battle with an opponent, and see the leaderboard.
+- **Links:** The login page links to the team selection, which in turn links to the battle page, and from there the user can go to the leaderboards page. There is also a link back to the team selection page from the leaderboards.
+- **Text:** The names of the Pokémon, the move selections, and other elements are represented with text.
+- **Images:** There are images of the different Pokémon in the team selection page and in the battle page.
+- **Authentication:** There is a form and a submit button in the login page that allows the user to enter their username and password to authenticate.
+- **Database:** The leaderboards page contains a table of usernames and battle statistics that will be stored and pulled from the database.
+- **WebSocket:** The battle page will provide real time WebSocket notifications when an opponent joins the battle and when they choose a move to attack.
+
 ## Notes
 [Link to notes](notes.md)
