@@ -1,0 +1,35 @@
+@font-face {
+    font-family: 'Freshman';
+    src: url('fonts/Freshman.woff2') format('woff2'),
+        url('fonts/Freshman.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+.great-value {
+    font-family: sans-serif;
+    font-weight: bolder;
+    font-style: normal;
+}
+
+.carter-one-regular {
+    font-family: 'Carter One', system-ui;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.freshman {
+    font-family: 'Freshman';
+    font-weight: normal;
+    font-style: normal;
+}
+
+.vt323-regular {
+    font-family: 'VT323', monospace;
+    font-weight: 400;
+    font-style: normal;
+}
+
+
+  
