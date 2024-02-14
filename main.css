@@ -42,6 +42,9 @@ header {
 
 footer {
     flex: 0 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 menu {
@@ -61,6 +64,6 @@ menu {
 main {
     display: flex;
     flex-direction: column;
-    flex: 1 calc(100vh - 130px);
+    flex: 1 calc(100vh - 120px);
     justify-content: center;
 }
