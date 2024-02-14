@@ -31,5 +31,17 @@
     font-style: normal;
 }
 
+menu {
+    display: flex;
+    flex: 1;
+    flex-direction: row !important;
+}
 
+.navbar-brand {
+    padding-left: 1em;
+}
+
+.nav-item {
+    padding: 0 0.5em;
+}
   
