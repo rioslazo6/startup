@@ -25,19 +25,29 @@
           </menu>
         </nav>
       </header>
-      <main class="container-fluid text-center">
+      <main class="container-fluid text-center align-items-center">
         <h1 class="great-value">Great Value</h1>
         <h1 class="carter-one-regular">PoKéMoN</h1>
-        <h1 class="freshman">STADIUM</h1>
-        <p>Please enter your credentials to play</p>
+        <h1 class="freshman mb-5">STADIUM</h1>
+        <p class="mb-4">Please enter your credentials to play.</p>
         <form action="select.html">
-            <label for="username">Username: </label>
-            <input type="text" id="username" placeholder="Your username here"/>
-            </br>
-            <label for="password">Password: </label>
-            <input type="password" id="password"/>
-            </br>
-            <button type="submit">Log in</button>
+          <div class="row mb-3 text-center">
+            <div class="col-sm-4">
+              <label class="col-form-label" for="username">Username: </label>
+            </div>
+            <div class="col-sm">
+              <input class="form-control" type="text" id="username" placeholder="Your username here"/>
+            </div>
+          </div>
+          <div class="row mb-5 align-items-center">
+            <div class="col-sm-4">
+              <label class="col-form-label" for="password">Password: </label>
+            </div>
+            <div class="col-sm">
+              <input class="form-control" type="password" id="password"/>
+            </div>
+          </div>
+          <button class="btn btn-primary" type="submit">Log in</button>
         </form>
       </main>
       <footer class="vt323-regular">
