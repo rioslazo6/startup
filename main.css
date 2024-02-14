@@ -31,6 +31,19 @@
     font-style: normal;
 }
 
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    flex: 0 72px;
+}
+
+footer {
+    flex: 0 48px;
+}
+
 menu {
     display: flex;
     flex: 1;
@@ -44,4 +57,10 @@ menu {
 .nav-item {
     padding: 0 0.5em;
 }
-  
+
+main {
+    display: flex;
+    flex-direction: column;
+    flex: 1 calc(100vh - 130px);
+    justify-content: center;
+}
