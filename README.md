@@ -49,5 +49,14 @@ For this deliverable, I built the main HTML structure for my application.
 - **Database:** The leaderboards page contains a table of usernames and battle statistics that will be stored and pulled from the database.
 - **WebSocket:** The battle page will provide real time WebSocket notifications when an opponent joins the battle and when they choose a move to attack.
 
+## CSS Deliverable
+To complete this deliverable, I used CSS to style the application into its final appearance.
+- **Header, footer, and main content body:** I used CSS flexbox and the Bootstrap framework to style the header, footer, and the main elements of all the pages.
+- **Navigation elements:** The navigation elements are now in a navigation bar on the header of all pages, and the one corresponding to the current page is a different color than the rest.
+- **Responsive to window resizing:** The web app maintains its style and format when resizing the window, and adjusts the position of some elements when necessary.
+- **Application elements:** The spacing between application elements is appropriate, the colors are easy on the eyes, and there is good contrast.
+- **Application text content:** The fonts are easy to read, with appropriate sizing and color, and are consistent with the theme of the application.
+- **Application images:** There are images embedded in Bootstrap containers, which were styled with a darker background color, a solid border, and a corner radius to give it the appearance of a card.
+
 ## Notes
 [Link to notes](notes.md)
