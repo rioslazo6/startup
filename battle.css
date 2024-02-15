@@ -65,4 +65,18 @@ main {
     display: flex;
     flex-direction: column;
     flex: 1 calc(100vh - 120px);
+    align-items: center;
+}
+
+.col {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.move {
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 3px;
 }
