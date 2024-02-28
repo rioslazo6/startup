@@ -10,6 +10,8 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Carter+One&family=VT323&display=swap" rel="stylesheet">
+        <!-- JS file -->
+        <script src="battle.js"></script>
         <!-- CSS file -->
         <link rel="stylesheet" href="battle.css">
         <title>Great Value Pokémon Stadium</title>
@@ -35,7 +37,7 @@
         <div class="container vt323-regular">
             <div class="row">
                 <div class="col">
-                    <p class="mb-0">Squirtle</p>
+                    <p id="opponentPokemonName" class="mb-0">Squirtle</p>
                     <p>HP: 25/25</p>
                 </div>
                 <div class="col"></div>
@@ -43,15 +45,15 @@
             <div class="row mb-5">
                 <div class="col"></div>
                 <div class="col">
-                    <img alt="Squirtle" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/7.gif"/>
+                    <img alt="Opponent Pokemon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/7.gif"/>
                 </div>
             </div>
             <div class="row">
                 <div class="col">
-                    <img alt="Raichu" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/back/26.gif"/>
+                    <img id="myPokemon" alt="My Pokemon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/back/26.gif"/>
                 </div>
                 <div class="col">
-                    <p class="mb-0">Raichu</p>
+                    <p id="myPokemonName" class="mb-0">Raichu</p>
                     <p>HP: 35/40</p>
                 </div>
             </div>
