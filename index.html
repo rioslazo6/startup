@@ -10,6 +10,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Carter+One&family=VT323&display=swap" rel="stylesheet">
+    <!-- JS file -->
+    <script src="index.js"></script>
     <!-- CSS file -->
     <link rel="stylesheet" href="main.css">
     <title>Great Value Pokémon Stadium</title>
@@ -32,7 +34,7 @@
         <h1 class="carter-one-regular">PoKéMoN</h1>
         <h1 class="freshman mb-5">STADIUM</h1>
         <p class="mb-4">Please enter your credentials to play.</p>
-        <form action="select.html">
+        <div>
           <div class="row mb-3 text-center">
             <div class="col-sm-4">
               <label class="col-form-label" for="username">Username: </label>
@@ -49,8 +51,8 @@
               <input class="form-control" type="password" id="password"/>
             </div>
           </div>
-          <button class="btn btn-primary mb-5" type="submit">Log in</button>
-        </form>
+          <button class="btn btn-primary mb-5" onclick="login()">Log in</button>
+        </div>
       </main>
 
       <footer class="bg-dark-subtle">
