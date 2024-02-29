@@ -58,5 +58,12 @@ To complete this deliverable, I used CSS to style the application into its final
 - **Application text content:** The fonts are easy to read, with appropriate sizing and color, and are consistent with the theme of the application.
 - **Application images:** There are images embedded in Bootstrap containers, which were styled with a darker background color, a solid border, and a corner radius to give it the appearance of a card.
 
+## JavaScript Deliverable
+For this deliverable, I added JavaScript functionality that modifies the HTML content to mock its intended behavior when it is completed.
+- **Login:** Pressing the "Log in" button validates the credentials entered against a mock database of credentials. If the "Register as a new user" checkbox is selected, the credentials get added to the "database". On succesful validation, it takes you to the Pokémon selection page.
+- **Database:** There are JavaScript objects that represent the credentials and leaderboards tables. Those are currently being updated by the code and will be replaced with a real database later.
+- **WebSocket:** A SetTimeout function is running after the user selects a move, emulating the opponent attacking back. This will be replaced with real WebSocket data later.
+- **Application logic:** The Pokémon selected is highlighted on click, and that selection is persisted via localstorage when going to the battle page. The move are highlighted on hover, and clicking one of them sends an "attack" to the opponent. 
+
 ## Notes
 [Link to notes](notes.md)
