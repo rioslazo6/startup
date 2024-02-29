@@ -10,6 +10,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Carter+One&family=VT323&display=swap" rel="stylesheet">
+    <!-- JS file -->
+    <script src="leaderboard.js"></script>
     <!-- CSS file -->
     <link rel="stylesheet" href="leaderboard.css">
     <title>Great Value Pokémon Stadium</title>
@@ -29,37 +31,8 @@
       
       <main class="container-fluid text-center">
         <!-- These scores will be stored in the database -->
-        <table class="my-5 table table-responsive table-bordered table-striped table-hover">
-            <tr>
-                <th>Username</th>
-                <th>Total Battles</th>
-                <th>Battles Won</th>
-                <th>Win Percentage</th>
-            </tr>
-            <tr>
-                <td>AshKetchum</td>
-                <td>100</td>
-                <td>88</td>
-                <td>88%</td>
-            </tr>
-            <tr>
-                <td>Spongebob</td>
-                <td>250</td>
-                <td>200</td>
-                <td>80%</td>
-            </tr>
-            <tr>
-                <td>Silver</td>
-                <td>15</td>
-                <td>10</td>
-                <td>67%</td>
-            </tr>
-            <tr>
-                <td>Zelda</td>
-                <td>2</td>
-                <td>1</td>
-                <td>50%</td>
-            </tr>
+        <table id="leaderboard" class="my-5 table table-responsive table-bordered table-striped table-hover">
+            <tbody></tbody>
         </table>
         <form action="select.html">
             <button class="btn btn-primary mb-5" type="submit">Back to team selection</button>
