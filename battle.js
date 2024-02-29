@@ -1,4 +1,4 @@
-// This will run only after the DOM is fully loaded, to avoid the span element being null.
+// This will run only after the DOM is fully loaded, to avoid the pokemon image and name being null.
 document.addEventListener("DOMContentLoaded", function(event) {
     const selectedPokemonId = localStorage.getItem("selectedPokemonId")
     myPokemonImage = document.getElementById("myPokemon")
