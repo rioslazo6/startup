@@ -18,30 +18,34 @@ async function loadLeaderboard() {
 }
 
 function addDataToTable(data) {
-    let headers = []
-    for (const [key, value] of Object.entries(data[0])) {
-        headers.push({ name: key, type: typeof value })
-    }
     const table = document.getElementById("leaderboard").getElementsByTagName("tbody")[0]
-    table.innerHTML = ""
-    const row = document.createElement("tr")
-    table.appendChild(row)
-    headers.forEach((header) => {
-        const cell = document.createElement("th")
-        row.appendChild(cell)
-        const textNode = document.createTextNode(header.name)
-        cell.appendChild(textNode)
-    })
-    data.forEach((dataRow) => {
+    if (data.length) {
+        let headers = []
+        for (const [key, value] of Object.entries(data[0])) {
+            headers.push({ name: key, type: typeof value })
+        }
+        table.innerHTML = ""
         const row = document.createElement("tr")
         table.appendChild(row)
-        for (const [, value] of Object.entries(dataRow)) {
-            const cell = document.createElement("td")
+        headers.forEach((header) => {
+            const cell = document.createElement("th")
             row.appendChild(cell)
-            const textNode = document.createTextNode(value)
+            const textNode = document.createTextNode(header.name)
             cell.appendChild(textNode)
-        }
-    })
+        })
+        data.forEach((dataRow) => {
+            const row = document.createElement("tr")
+            table.appendChild(row)
+            for (const [, value] of Object.entries(dataRow)) {
+                const cell = document.createElement("td")
+                row.appendChild(cell)
+                const textNode = document.createTextNode(value)
+                cell.appendChild(textNode)
+            }
+        })
+    } else {
+        table.innerHTML = "<tr><td colspan=\"4\">No scores yet. Go battle!</td></tr>"
+    }
 }
 
 loadLeaderboard()
