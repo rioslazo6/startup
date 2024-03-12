@@ -19,47 +19,33 @@ apiRouter.get("/leaderboard", (_req, res) => {
     res.send(leaderboardData)
 })
 
+// Update leaderboard.
+apiRouter.post("/leaderboard", (req, res) => {
+    leaderboardData = updateLeaderboard(req.body, leaderboardData)
+    res.send(leaderboardData)
+})
+
 // Return application's default page if path is unknown.
 app.use((_req, res) => {
     res.sendFile("index.html", { root: "public" })
-  });
+})
 
 app.listen(port, () => {
     console.log(`Listening on port ${port}`)
 })
 
-// Temporary mock data.
-let leaderboardData = [
-    {
-        username: "ash",
-        totalBattles: 100,
-        battlesWon: 88,
-        get winPercentage() {
-            return parseFloat((this.battlesWon / this.totalBattles) * 100).toFixed(2) + " %"
-        }
-    },
-    {
-        username: "silver",
-        totalBattles: 250,
-        battlesWon: 200,
-        get winPercentage() {
-            return parseFloat((this.battlesWon / this.totalBattles) * 100).toFixed(2) + " %"
-        }
-    },
-    {
-        username: "zelda",
-        totalBattles: 15,
-        battlesWon: 10,
-        get winPercentage() {
-            return parseFloat((this.battlesWon / this.totalBattles) * 100).toFixed(2) + " %"
-        }
-    },
-    {
-        username: "link",
-        totalBattles: 2,
-        battlesWon: 1,
-        get winPercentage() {
-            return parseFloat((this.battlesWon / this.totalBattles) * 100).toFixed(2) + " %"
+let leaderboardData = []
+function updateLeaderboard(updatedData, leaderboardData) {
+    let found = false
+    for (const [i, score] of leaderboardData.entries()) {
+        if (score.username === updatedData.username) {
+            leaderboardData.splice(i, 1, updatedData)
+            found = true
+            break
         }
     }
-]
+    if (!found) {
+        leaderboardData.push(updatedData)
+    }
+    return leaderboardData
+}
