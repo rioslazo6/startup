@@ -17,6 +17,8 @@ async function loadUserScore() {
     return leaderboardData.find(score => score.username === localStorage.getItem("username"))
 }
 
+let userWon = false
+
 async function calculateBattleResult() {
     let userScore = await loadUserScore()
     if (!userScore) {
@@ -30,6 +32,7 @@ async function calculateBattleResult() {
     }
     if (Math.random() >= 0.3) { // Simulating a "win".
         userScore.battlesWon += 1
+        userWon = true
     }
     userScore.winPercentage = parseFloat((userScore.battlesWon / userScore.totalBattles) * 100).toFixed(2) + " %"
     try {
@@ -62,6 +65,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
             moveSpan.innerHTML = moveName
             if (Math.random() >= 0.7) { // Simulating the battle being "done".
                 await calculateBattleResult()
+                window.alert(`You ${userWon ? "won! Well done." : "lost! Better luck next time."}`)
                 window.location.href = "leaderboard.html"
             } else {
                 // 2 seconds after the user clicks a move, the opponent will "attack".
