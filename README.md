@@ -8,10 +8,10 @@ Have you ever wished that Pokémon were real? Have you ever thought: "*oh man, I
 
 ### Design
 After successful login, the user will see a list of Pokémon to select for their team:
-![List of Pokemon](images/readme/pokemon_list.png)
+![List of Pokemon](public/images/readme/pokemon_list.png)
 
 Once a team is selected and another player has joined the lobby, the battle page will be displayed:
-![Pokemon battle](images/readme/pokemon_battle.png)
+![Pokemon battle](public/images/readme/pokemon_battle.png)
 
 ### Key features
 - Secure login using HTTPS.
@@ -64,6 +64,14 @@ For this deliverable, I added JavaScript functionality that modifies the HTML co
 - **Database:** There are JavaScript objects that represent the credentials and leaderboards tables. Those are currently being updated by the code and will be replaced with a real database later.
 - **WebSocket:** A SetTimeout function is running after the user selects a move, emulating the opponent attacking back. This will be replaced with real WebSocket data later.
 - **Application logic:** The Pokémon selected is highlighted on click, and that selection is persisted via localstorage when going to the battle page. The move are highlighted on hover, and clicking one of them sends an "attack" to the opponent. 
+
+## Service Deliverable
+For this deliverable, I added JavaScript functionality that modifies the HTML content to mock its intended behavior when it is completed.
+- **Node.js/Express HTTP service:** Done -- created the HTTP service using Node and Express.
+- **Static middleware for frontend:** Done -- it's being served by Express.
+- **Calls to third party service:** Done -- my application is calling the [PokeApi](https://pokeapi.co/) service to retrieve Pokémon data.
+- **Backend service:** Done -- created GET and POST endpoints to retrieve and update the leaderboard.
+- **Frontend calls to service endpoints:** Done -- the battle and leaderboard frontend pages call the backend service endpoints using the fetch function.
 
 ## Notes
 [Link to notes](notes.md)
