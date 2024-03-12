@@ -16,6 +16,7 @@ app.use("/api", apiRouter)
 
 // Get leaderboard.
 apiRouter.get("/leaderboard", (_req, res) => {
+    leaderboardData.sort((a,b) => (b.battlesWon / b.totalBattles) - (a.battlesWon / a.totalBattles))
     res.send(leaderboardData)
 })
 
