@@ -48,10 +48,7 @@ async function calculateBattleResult() {
     }
 }
 
-async function loadOpponentPokemon() {
-    // To get a random Pokemon ID between 1 and 151 (1st Gen).
-    const id = Math.floor(Math.random() * 150) + 1
-
+async function loadPokemon(id) {
     // Calling 3rd party API.
     const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
     return await response.json()
@@ -65,7 +62,10 @@ function capitalizeName(string) {
 
 // This will run only after the DOM is fully loaded, to avoid the pokemon image and name being null.
 document.addEventListener("DOMContentLoaded", async function(event) {
-    opponentPokemonData = await loadOpponentPokemon()
+    // To get a random Pokemon ID between 1 and 151 (1st Gen).
+    const opponentId = Math.floor(Math.random() * 150) + 1
+    opponentPokemonData = await loadPokemon(opponentId)
+
     document.getElementById("opponentPokemon").src = opponentPokemonData.sprites.versions["generation-v"]["black-white"].animated.front_default
     opponentPokemonName = capitalizeName(opponentPokemonData.name)
     document.getElementById("opponentPokemonName").innerHTML = opponentPokemonName
@@ -74,9 +74,14 @@ document.addEventListener("DOMContentLoaded", async function(event) {
     document.getElementById("opponentTotalHP").innerHTML = opponentHP
 
     const selectedPokemonId = localStorage.getItem("selectedPokemonId")
+    myPokemonData = await loadPokemon(selectedPokemonId)
+
     myPokemonImage = document.getElementById("myPokemon")
-    myPokemonImage.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/back/${selectedPokemonId}.gif`
+    myPokemonImage.src = myPokemonData.sprites.versions["generation-v"]["black-white"].animated.back_default
     document.getElementById("myPokemonName").innerHTML = localStorage.getItem("selectedPokemonName")
+    myHP = myPokemonData.stats[0].base_stat
+    document.getElementById("myRemainingHP").innerHTML = myHP
+    document.getElementById("myTotalHP").innerHTML = myHP
 
     moves = document.querySelectorAll("td.move")
     moves.forEach(move => {
@@ -91,7 +96,7 @@ document.addEventListener("DOMContentLoaded", async function(event) {
                 window.alert(`You ${userWon ? "won! Well done." : "lost! Better luck next time."}`)
                 window.location.href = "leaderboard.html"
             } else {
-                // 2 seconds after the user clicks a move, the opponent will "attack".
+                // If battle didn't end, 2 seconds after the user clicks a move, the opponent will "attack".
                 setTimeout(() => {
                     pokemonSpan.innerHTML = opponentPokemonName
                     moveSpan.innerHTML = "TACKLE"
