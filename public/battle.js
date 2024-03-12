@@ -48,8 +48,31 @@ async function calculateBattleResult() {
     }
 }
 
+async function loadOpponentPokemon() {
+    // To get a random Pokemon ID between 1 and 151 (1st Gen).
+    const id = Math.floor(Math.random() * 150) + 1
+
+    // Calling 3rd party API.
+    const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
+    return await response.json()
+}
+
+function capitalizeName(string) {
+    return string.replace(/\b\w/g, function(text){
+        return text.charAt(0).toUpperCase() + text.substr(1).toLowerCase()
+    })
+}
+
 // This will run only after the DOM is fully loaded, to avoid the pokemon image and name being null.
-document.addEventListener("DOMContentLoaded", function(event) {
+document.addEventListener("DOMContentLoaded", async function(event) {
+    opponentPokemonData = await loadOpponentPokemon()
+    document.getElementById("opponentPokemon").src = opponentPokemonData.sprites.versions["generation-v"]["black-white"].animated.front_default
+    opponentPokemonName = capitalizeName(opponentPokemonData.name)
+    document.getElementById("opponentPokemonName").innerHTML = opponentPokemonName
+    opponentHP = opponentPokemonData.stats[0].base_stat
+    document.getElementById("opponentRemainingHP").innerHTML = opponentHP
+    document.getElementById("opponentTotalHP").innerHTML = opponentHP
+
     const selectedPokemonId = localStorage.getItem("selectedPokemonId")
     myPokemonImage = document.getElementById("myPokemon")
     myPokemonImage.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/back/${selectedPokemonId}.gif`
@@ -70,8 +93,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
             } else {
                 // 2 seconds after the user clicks a move, the opponent will "attack".
                 setTimeout(() => {
-                    pokemonSpan.innerHTML = "Squirtle"
-                    moveSpan.innerHTML = "WATER GUN"
+                    pokemonSpan.innerHTML = opponentPokemonName
+                    moveSpan.innerHTML = "TACKLE"
                 }, 2000)
             }
         })

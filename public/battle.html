@@ -32,20 +32,20 @@
       <main>
         <!-- This is where the WebSocket data will be displayed  -->
         <p class="mt-5">Opponent <strong>Zelda</strong> just joined the battle.</p>
-        <p><span id="pokemonSpan">Squirtle</span> used <span id="moveSpan">WATER GUN</span>!</p>
+        <p><span id="pokemonSpan">Opponent</span> used <span id="moveSpan">TACKLE</span>!</p>
         <br/>
         <div class="container vt323-regular">
             <div class="row">
                 <div class="col">
-                    <p id="opponentPokemonName" class="mb-0">Squirtle</p>
-                    <p>HP: 25/25</p>
+                    <p id="opponentPokemonName" class="mb-0">...</p>
+                    <p>HP: <span id="opponentRemainingHP"></span>/<span id="opponentTotalHP"></span></p>
                 </div>
                 <div class="col"></div>
             </div>
             <div class="row mb-5">
                 <div class="col"></div>
                 <div class="col">
-                    <img alt="Opponent Pokemon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/7.gif"/>
+                    <img id="opponentPokemon" alt="Opponent Pokemon" height="50" src="images/pokeball.png"/>
                 </div>
             </div>
             <div class="row">
