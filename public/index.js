@@ -1,3 +1,15 @@
+document.addEventListener("DOMContentLoaded", function(event) {
+    const username = localStorage.getItem("username")
+    if (username) {
+        document.getElementById("usernameSpan").textContent = username
+        setDisplay("loginMenu", "none")
+        setDisplay("playMenu", "block")
+    } else {
+        setDisplay("loginMenu", "block")
+        setDisplay("playMenu", "none")
+    }
+})
+
 async function login() {
     const newUser = document.getElementById("registerCheckbox").checked
     const usernameInput = document.querySelector("#username")
@@ -32,4 +44,22 @@ async function login() {
 
 function updateButton(checkbox) {
     document.querySelector("#loginButton").innerHTML = checkbox.checked ? "Register" : "Log in"
+}
+
+function play() {
+    window.location.href = "select.html"
+}
+
+function logout() {
+    localStorage.removeItem("username")
+    fetch("/api/auth/logout", {
+        method: "delete",
+    }).then(() => (window.location.href = "/"))
+}
+
+function setDisplay(elementId, display) {
+    const element = document.querySelector(`#${elementId}`)
+    if (element) {
+        element.style.display = display
+    }
 }
