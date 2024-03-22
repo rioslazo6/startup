@@ -9,7 +9,7 @@ const db = client.db("startup")
 const userCollection = db.collection("user")
 
 // Testing database connection
-(async function testConnection() {
+;(async function testConnection() {
     await client.connect()
     await db.command({ ping: 1 })
 })().catch((ex) => {
