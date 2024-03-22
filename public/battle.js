@@ -34,6 +34,7 @@ async function calculateBattleResult() {
         userScore.battlesWon += 1
         userWon = true
     }
+    userScore.winRate = userScore.battlesWon / userScore.totalBattles
     userScore.winPercentage = parseFloat((userScore.battlesWon / userScore.totalBattles) * 100).toFixed(2) + " %"
     try {
         const response = await fetch("/api/leaderboard", {

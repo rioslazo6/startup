@@ -49,21 +49,36 @@ apiRouter.post("/auth/login", async (req, res) => {
     res.status(401).send({ msg: "Unauthorized" })
 })
 
-// Delete token if stored in cookie
+// Delete token if stored in cookie.
 apiRouter.delete("/auth/logout", (_req, res) => {
     res.clearCookie(AUTH_COOKIE_NAME)
     res.status(204).end()
 })
 
+// To verify credentials for endpoints.
+var secureApiRouter = express.Router()
+apiRouter.use(secureApiRouter)
+
+secureApiRouter.use(async (req, res, next) => {
+    const token = req.cookies[AUTH_COOKIE_NAME]
+    const user = await db.getUserByToken(token)
+    if (user) {
+        next()
+    } else {
+        res.status(401).send({ msg: "Unauthorized" })
+    }
+})
+
 // Get leaderboard.
-apiRouter.get("/leaderboard", (_req, res) => {
-    leaderboardData.sort((a,b) => (b.battlesWon / b.totalBattles) - (a.battlesWon / a.totalBattles))
+secureApiRouter.get("/leaderboard", async (_req, res) => {
+    const leaderboardData = await db.getLeaderboard()
     res.send(leaderboardData)
 })
 
 // Update leaderboard.
-apiRouter.post("/leaderboard", (req, res) => {
-    leaderboardData = updateLeaderboard(req.body, leaderboardData)
+secureApiRouter.post("/leaderboard", async (req, res) => {
+    db.updateLeaderboard(req.body)
+    const leaderboardData = await db.getLeaderboard()
     res.send(leaderboardData)
 })
 
@@ -82,20 +97,4 @@ function setAuthCookie(res, token) {
         httpOnly: true,
         sameSite: "strict"
     })
-}
-
-let leaderboardData = []
-function updateLeaderboard(updatedData, leaderboardData) {
-    let found = false
-    for (const [i, score] of leaderboardData.entries()) {
-        if (score.username === updatedData.username) {
-            leaderboardData.splice(i, 1, updatedData)
-            found = true
-            break
-        }
-    }
-    if (!found) {
-        leaderboardData.push(updatedData)
-    }
-    return leaderboardData
 }
