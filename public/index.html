@@ -52,10 +52,10 @@
             </div>
           </div>
           <div class="mb-5">
-            <input class="form-check-input" type="checkbox" value="" id="registerCheckbox">
+            <input class="form-check-input" type="checkbox" value="" id="registerCheckbox" onchange="updateButton(this)">
             <label class="form-check-label" for="registerCheckbox">Register as a new user</label>
           </div>
-          <button class="btn btn-primary mb-5" onclick="login()">Log in</button>
+          <button id="loginButton" class="btn btn-primary mb-5" onclick="login()">Log in</button>
         </div>
       </main>
 

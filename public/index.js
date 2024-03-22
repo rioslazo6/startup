@@ -1,31 +1,35 @@
-function login() {
+async function login() {
     const newUser = document.getElementById("registerCheckbox").checked
     const usernameInput = document.querySelector("#username")
     const passwordInput = document.querySelector("#password")
-    const correctPassword = credentials[usernameInput.value]
-    if (newUser) {
-        if (usernameInput.value.trim().length === 0 || passwordInput.value.trim().length === 0) {
-            window.alert("Please enter a valid username and password to register.")
-        } else {
-            credentials[usernameInput.value] = passwordInput.value // "Adding" new user to "database".
-            localStorage.setItem("username", usernameInput.value)
-            console.log(credentials)
-            window.location.href = "select.html"
-        }
-    } else if (passwordInput.value === correctPassword) {
+    var endpoint = "/api/auth/login"
+    if (document.getElementById("registerCheckbox").checked) {
+        endpoint = "/api/auth/create"
+    }
+
+    if (usernameInput.value.trim().length === 0 || passwordInput.value.trim().length === 0) {
+        usernameInput.value = ""
+        passwordInput.value = ""
+        window.alert("Please enter a valid username and password.")
+        return
+    }
+
+    const response = await fetch(endpoint, {
+        method: "post",
+        body: JSON.stringify({ username: usernameInput.value, password: passwordInput.value }),
+        headers: { "Content-type": "application/json; charset=UTF-8" }
+    })
+
+    if (response.ok) {
         localStorage.setItem("username", usernameInput.value)
         window.location.href = "select.html"
     } else {
         usernameInput.value = ""
         passwordInput.value = ""
-        window.alert("Invalid credentials.\n\nHint: try username \"ash\" and password \"pika\".")
+        window.alert("Invalid credentials.")
     }
 }
 
-// This is a "database" of the usernames and passwords.
-const credentials = {
-    ash: "pika",
-    silver: "gold",
-    zelda: "link",
-    link: "zelda"
+function updateButton(checkbox) {
+    document.querySelector("#loginButton").innerHTML = checkbox.checked ? "Register" : "Log in"
 }
