@@ -49,6 +49,12 @@ apiRouter.post("/auth/login", async (req, res) => {
     res.status(401).send({ msg: "Unauthorized" })
 })
 
+// Delete token if stored in cookie
+apiRouter.delete("/auth/logout", (_req, res) => {
+    res.clearCookie(AUTH_COOKIE_NAME)
+    res.status(204).end()
+})
+
 // Get leaderboard.
 apiRouter.get("/leaderboard", (_req, res) => {
     leaderboardData.sort((a,b) => (b.battlesWon / b.totalBattles) - (a.battlesWon / a.totalBattles))
