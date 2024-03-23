@@ -73,5 +73,15 @@ For this deliverable, I added JavaScript functionality that modifies the HTML co
 - **Backend service:** Done -- created GET and POST endpoints to retrieve and update the leaderboard.
 - **Frontend calls to service endpoints:** Done -- the battle and leaderboard frontend pages call the backend service endpoints using the fetch function.
 
+## DB/Login Deliverable
+For this deliverable, I used a MongoDB database to store and persist the relevant application data.
+- **Created database:** Done -- created a MongoDB Atlas database.
+- **Endpoints for adding, updating, and deleting data:** Done -- created endpoints and functions to perform CRUD operations on the database.
+- **New user registration:** Done -- a person can check a box on the login page to create a new user.
+- **Existing user authentication:** Done -- users with existing credentials can enter them and, if entered correctly, get access to the app.
+- **Application data stored in MongoDB:** Done -- created collections in the MongoDB database to store app data.
+- **Storage of credentials:** Done -- each username and encrypted password are stored in a collection in MongoDB.
+- **Restrict functionality:** Done -- navigation items are hidden until user is properly authenticated.
+
 ## Notes
 [Link to notes](notes.md)
