@@ -34,6 +34,7 @@ async function calculateBattleResult() {
         userScore.battlesWon += 1
         userWon = true
     }
+    socket.send(`${userScore.username} just ${userWon ? "won" : "lost"} a battle!`)
     userScore.winRate = userScore.battlesWon / userScore.totalBattles
     userScore.winPercentage = parseFloat((userScore.battlesWon / userScore.totalBattles) * 100).toFixed(2) + " %"
     try {
@@ -66,10 +67,24 @@ function configureWebSocket() {
     const protocol = window.location.protocol === "http:" ? "ws" : "wss"
     socket = new WebSocket(`${protocol}://${window.location.host}/ws`)
     socket.onopen = () => {
-        window.alert("WebSocket connected")
+        displayMessages('<p class="mt-3">WebSocket connected</p>')
     }
     socket.onclose = () => {
-        window.alert("WebSocket disconnected")
+        displayMessages('<p class="mt-3">WebSocket disconnected</p>')
+    }
+    socket.onmessage = async event => {
+        const message = await event.data.text()
+        displayMessages(`<p class="mt-3">${message}</p>`)
+    }
+}
+
+let messages = []
+function displayMessages(message) {
+    messages.push(message)
+    const messagesDiv = document.getElementById("wsMessages")
+    messagesDiv.innerHTML = ""
+    for (const message of messages) {
+        messagesDiv.innerHTML = message + messagesDiv.innerHTML
     }
 }
 
