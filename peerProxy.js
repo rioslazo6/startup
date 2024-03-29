@@ -13,7 +13,7 @@ function peerProxy(httpServer) {
 
     let connections = [] // To keep track of connections
 
-    ws.on("connection", ws => {
+    wss.on("connection", ws => {
         const connection = { id: uuid.v4(), alive: true, ws: ws }
         connections.push(connection)
 
