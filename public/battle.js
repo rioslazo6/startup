@@ -61,8 +61,22 @@ function capitalizeName(string) {
     })
 }
 
+let socket
+function configureWebSocket() {
+    const protocol = window.location.protocol === "http:" ? "ws" : "wss"
+    socket = new WebSocket(`${protocol}://${window.location.host}/ws`)
+    socket.onopen = () => {
+        window.alert("WebSocket connected")
+    }
+    socket.onclose = () => {
+        window.alert("WebSocket disconnected")
+    }
+}
+
 // This will run only after the DOM is fully loaded, to avoid the pokemon image and name being null.
 document.addEventListener("DOMContentLoaded", async function(event) {
+    configureWebSocket()
+
     // To get a random Pokemon ID between 1 and 151 (1st Gen).
     const opponentId = Math.floor(Math.random() * 150) + 1
     opponentPokemonData = await loadPokemon(opponentId)
