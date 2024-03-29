@@ -67,10 +67,11 @@ function configureWebSocket() {
     const protocol = window.location.protocol === "http:" ? "ws" : "wss"
     socket = new WebSocket(`${protocol}://${window.location.host}/ws`)
     socket.onopen = () => {
-        displayMessages('<p class="mt-3">WebSocket connected</p>')
+        displayMessages('<p class="mt-3">Game connected.</p>')
+        socket.send(`${localStorage.getItem("username")} started a battle.`)
     }
     socket.onclose = () => {
-        displayMessages('<p class="mt-3">WebSocket disconnected</p>')
+        displayMessages('<p class="mt-3">Game disconnected.</p>')
     }
     socket.onmessage = async event => {
         const message = await event.data.text()
@@ -80,11 +81,14 @@ function configureWebSocket() {
 
 let messages = []
 function displayMessages(message) {
-    messages.push(message)
+    messages.unshift(message)
+    if (messages.length > 3) {
+        messages.length = 3
+    }
     const messagesDiv = document.getElementById("wsMessages")
     messagesDiv.innerHTML = ""
     for (const message of messages) {
-        messagesDiv.innerHTML = message + messagesDiv.innerHTML
+        messagesDiv.innerHTML += message
     }
 }
 
