@@ -8,6 +8,10 @@ function capitalizeName(string) {
 
 // This will run only after the DOM is fully loaded, to avoid the span element being null.
 document.addEventListener("DOMContentLoaded", async function(event) {
+    if (!sessionStorage.getItem("username")) {
+        window.location.replace("index.html") // Redirecting if not logged in.
+    }
+
     const usernameSpan = document.getElementById("usernameSpan")
     usernameSpan.textContent = sessionStorage.getItem("username")
 

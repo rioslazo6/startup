@@ -94,6 +94,10 @@ function displayMessages(message) {
 
 // This will run only after the DOM is fully loaded, to avoid the pokemon image and name being null.
 document.addEventListener("DOMContentLoaded", async function(event) {
+    if (!sessionStorage.getItem("username")) {
+        window.location.replace("index.html") // Redirecting if not logged in.
+    }
+
     configureWebSocket()
 
     // To get a random Pokemon ID between 1 and 151 (1st Gen).

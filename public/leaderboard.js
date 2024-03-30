@@ -48,4 +48,7 @@ function addDataToTable(data) {
     }
 }
 
+if (!sessionStorage.getItem("username")) {
+    window.location.replace("index.html") // Redirecting if not logged in.
+}
 loadLeaderboard()
