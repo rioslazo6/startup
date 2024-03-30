@@ -35,6 +35,7 @@ async function calculateBattleResult() {
         userWon = true
     }
     sessionStorage.removeItem("selectedPokemonId")
+    sessionStorage.removeItem("opponentPokemonId")
     socket.send(`${userScore.username} just ${userWon ? "won" : "lost"} a battle!`)
     userScore.winRate = userScore.battlesWon / userScore.totalBattles
     userScore.winPercentage = parseFloat((userScore.battlesWon / userScore.totalBattles) * 100).toFixed(2) + " %"
@@ -109,8 +110,12 @@ document.addEventListener("DOMContentLoaded", async function(event) {
 
     configureWebSocket()
 
-    // To get a random Pokemon ID between 1 and 151 (1st Gen).
-    const opponentId = Math.floor(Math.random() * 150) + 1
+    let opponentId = sessionStorage.getItem("opponentPokemonId")
+    if (!opponentId) {
+        // To get a random Pokemon ID between 1 and 151 (1st Gen).
+        opponentId = Math.floor(Math.random() * 150) + 1
+        sessionStorage.setItem("opponentPokemonId", opponentId)
+    }
     opponentPokemonData = await loadPokemon(opponentId)
 
     document.getElementById("opponentPokemon").src = opponentPokemonData.sprites.versions["generation-v"]["black-white"].animated.front_default
