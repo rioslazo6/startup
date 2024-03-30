@@ -36,6 +36,7 @@ async function calculateBattleResult() {
     }
     sessionStorage.removeItem("selectedPokemonId")
     sessionStorage.removeItem("opponentPokemonId")
+    sessionStorage.removeItem("battleMessageWasSent")
     socket.send(`${userScore.username} just ${userWon ? "won" : "lost"} a battle!`)
     userScore.winRate = userScore.battlesWon / userScore.totalBattles
     userScore.winPercentage = parseFloat((userScore.battlesWon / userScore.totalBattles) * 100).toFixed(2) + " %"
@@ -70,7 +71,10 @@ function configureWebSocket() {
     socket = new WebSocket(`${protocol}://${window.location.host}/ws`)
     socket.onopen = () => {
         displayMessages('<p class="mt-3">Game connected.</p>')
-        socket.send(`${sessionStorage.getItem("username")} started a battle.`)
+        if (!sessionStorage.getItem("battleMessageWasSent")) {
+            socket.send(`${sessionStorage.getItem("username")} started a battle using ${sessionStorage.getItem("selectedPokemonName")}.`)
+            sessionStorage.setItem("battleMessageWasSent", "true")
+        }
     }
     socket.onclose = () => {
         displayMessages('<p class="mt-3">Game disconnected.</p>')

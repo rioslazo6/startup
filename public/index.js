@@ -51,7 +51,7 @@ function play() {
 }
 
 function logout() {
-    sessionStorage.removeItem("username")
+    sessionStorage.clear()
     fetch("/api/auth/logout", {
         method: "delete",
     }).then(() => (window.location.href = "/"))
