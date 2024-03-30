@@ -83,5 +83,12 @@ For this deliverable, I used a MongoDB database to store and persist the relevan
 - **Storage of credentials:** Done -- each username and encrypted password are stored in a collection in MongoDB.
 - **Restrict functionality:** Done -- navigation items are hidden until user is properly authenticated.
 
+## WebSocket Deliverable
+For this deliverable, I used WebSockets so to send and receive messages when other users started, won, or lost battles.
+- **Backend listens for WebSocket connection:** Done -- the backend is setup to manage connections and listen for messages.
+- **Frontend makes WebSocket connection:** Done -- the battle page creates a WebSocket connection when it loads.
+- **Data is sent over WebSocket connection:** Done -- messages are sent when the game connects or disconnects, and when a user starts a battle, wins, or loses.
+- **WebSocket data is displayed:** Done -- the battle page displays the received WebSocket messages near the top of the page.
+
 ## Notes
 [Link to notes](notes.md)
