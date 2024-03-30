@@ -32,11 +32,11 @@
       <main>
         <!-- This is where the WebSocket data will be displayed  -->
         <div id="wsMessages" class="my-4 text-center"></div>
-        <div>
+        <div id="movesDiv">
             <p><span id="pokemonSpan">Opponent</span> used <span id="moveSpan">TACKLE</span>!</p>
         </div>
         <br/>
-        <div class="container vt323-regular">
+        <div id="battleDiv" class="container vt323-regular">
             <div class="row">
                 <div class="col">
                     <p id="opponentPokemonName" class="mb-0">...</p>
@@ -82,8 +82,8 @@
             
         </div>
         <hr/>
-        <form action="leaderboard.html">
-            <button class="btn btn-primary mb-5" type="submit">See leaderboard</button>
+        <form id="buttonForm" action="leaderboard.html">
+            <button id="button" class="btn btn-primary mb-5" type="submit">See leaderboard</button>
         </form>
       </main>
 

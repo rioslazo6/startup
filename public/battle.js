@@ -34,6 +34,7 @@ async function calculateBattleResult() {
         userScore.battlesWon += 1
         userWon = true
     }
+    sessionStorage.removeItem("selectedPokemonId")
     socket.send(`${userScore.username} just ${userWon ? "won" : "lost"} a battle!`)
     userScore.winRate = userScore.battlesWon / userScore.totalBattles
     userScore.winPercentage = parseFloat((userScore.battlesWon / userScore.totalBattles) * 100).toFixed(2) + " %"
@@ -97,6 +98,14 @@ document.addEventListener("DOMContentLoaded", async function(event) {
     if (!sessionStorage.getItem("username")) {
         window.location.replace("index.html") // Redirecting if not logged in.
     }
+    const selectedPokemonId = sessionStorage.getItem("selectedPokemonId")
+    if (!selectedPokemonId) {
+        document.getElementById("movesDiv").innerHTML = "You have not selected a Pokémon yet."
+        document.getElementById("battleDiv").innerHTML = ""
+        document.getElementById("button").innerHTML = "Select Pokémon"
+        document.getElementById("buttonForm").action = "select.html"
+        return
+    }
 
     configureWebSocket()
 
@@ -111,7 +120,6 @@ document.addEventListener("DOMContentLoaded", async function(event) {
     document.getElementById("opponentRemainingHP").innerHTML = opponentHP
     document.getElementById("opponentTotalHP").innerHTML = opponentHP
 
-    const selectedPokemonId = sessionStorage.getItem("selectedPokemonId")
     myPokemonData = await loadPokemon(selectedPokemonId)
 
     myPokemonImage = document.getElementById("myPokemon")
