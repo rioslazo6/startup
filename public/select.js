@@ -9,7 +9,7 @@ function capitalizeName(string) {
 // This will run only after the DOM is fully loaded, to avoid the span element being null.
 document.addEventListener("DOMContentLoaded", async function(event) {
     const usernameSpan = document.getElementById("usernameSpan")
-    usernameSpan.textContent = localStorage.getItem("username")
+    usernameSpan.textContent = sessionStorage.getItem("username")
 
     cardsContainer = document.getElementById("cardsContainer")
     for (let i = 0; i < 6; i++) {
@@ -36,9 +36,9 @@ document.addEventListener("DOMContentLoaded", async function(event) {
     pokemonCards.forEach(card => {
         card.addEventListener("click", (e) => {
             refreshCardSelection(card.id)
-            localStorage.setItem("selectedPokemonId", card.id)
+            sessionStorage.setItem("selectedPokemonId", card.id)
             const selectedPokemonName = document.querySelector(".selected p").innerHTML
-            localStorage.setItem("selectedPokemonName", selectedPokemonName)
+            sessionStorage.setItem("selectedPokemonName", selectedPokemonName)
         })
     })
 })

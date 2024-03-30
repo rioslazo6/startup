@@ -14,7 +14,7 @@ async function loadUserScore() {
             leaderboardData = JSON.parse(leaderboardString)
         }
     }
-    return leaderboardData.find(score => score.username === localStorage.getItem("username"))
+    return leaderboardData.find(score => score.username === sessionStorage.getItem("username"))
 }
 
 let userWon = false
@@ -23,7 +23,7 @@ async function calculateBattleResult() {
     let userScore = await loadUserScore()
     if (!userScore) {
         userScore = {
-            username: localStorage.getItem("username"),
+            username: sessionStorage.getItem("username"),
             totalBattles: 1,
             battlesWon: 0
         }
@@ -68,7 +68,7 @@ function configureWebSocket() {
     socket = new WebSocket(`${protocol}://${window.location.host}/ws`)
     socket.onopen = () => {
         displayMessages('<p class="mt-3">Game connected.</p>')
-        socket.send(`${localStorage.getItem("username")} started a battle.`)
+        socket.send(`${sessionStorage.getItem("username")} started a battle.`)
     }
     socket.onclose = () => {
         displayMessages('<p class="mt-3">Game disconnected.</p>')
@@ -107,12 +107,12 @@ document.addEventListener("DOMContentLoaded", async function(event) {
     document.getElementById("opponentRemainingHP").innerHTML = opponentHP
     document.getElementById("opponentTotalHP").innerHTML = opponentHP
 
-    const selectedPokemonId = localStorage.getItem("selectedPokemonId")
+    const selectedPokemonId = sessionStorage.getItem("selectedPokemonId")
     myPokemonData = await loadPokemon(selectedPokemonId)
 
     myPokemonImage = document.getElementById("myPokemon")
     myPokemonImage.src = myPokemonData.sprites.versions["generation-v"]["black-white"].animated.back_default
-    document.getElementById("myPokemonName").innerHTML = localStorage.getItem("selectedPokemonName")
+    document.getElementById("myPokemonName").innerHTML = sessionStorage.getItem("selectedPokemonName")
     myHP = myPokemonData.stats[0].base_stat
     document.getElementById("myRemainingHP").innerHTML = myHP
     document.getElementById("myTotalHP").innerHTML = myHP
@@ -121,7 +121,7 @@ document.addEventListener("DOMContentLoaded", async function(event) {
     moves.forEach(move => {
         move.addEventListener("click", async (e) => {
             const pokemonSpan = document.getElementById("pokemonSpan")
-            pokemonSpan.innerHTML = localStorage.getItem("selectedPokemonName")
+            pokemonSpan.innerHTML = sessionStorage.getItem("selectedPokemonName")
             const moveName = move.innerHTML
             const moveSpan = document.getElementById("moveSpan")
             moveSpan.innerHTML = moveName

@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function(event) {
-    const username = localStorage.getItem("username")
+    const username = sessionStorage.getItem("username")
     if (username) {
         document.getElementById("usernameSpan").textContent = username
         setDisplay("loginMenu", "none")
@@ -33,7 +33,7 @@ async function login() {
     })
 
     if (response.ok) {
-        localStorage.setItem("username", usernameInput.value)
+        sessionStorage.setItem("username", usernameInput.value)
         window.location.href = "select.html"
     } else {
         usernameInput.value = ""
@@ -51,7 +51,7 @@ function play() {
 }
 
 function logout() {
-    localStorage.removeItem("username")
+    sessionStorage.removeItem("username")
     fetch("/api/auth/logout", {
         method: "delete",
     }).then(() => (window.location.href = "/"))
