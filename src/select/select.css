@@ -1,0 +1,15 @@
+.col {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pokemon-card {
+    border-style: solid;
+    border-radius: 10px;
+    font-size: x-large;
+}
+
+.selected {
+    box-shadow: 0 0 30px 10px #316cf4;
+}

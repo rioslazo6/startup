@@ -40,7 +40,7 @@ export default function App() {
                             />
                         } exact
                     />
-                    <Route path="/select" element={<Select />} />
+                    <Route path="/select" element={<Select username={username}/>} />
                     <Route path="/battle" element={<Battle />} />
                     <Route path="/leaderboard" element={<Leaderboard />} />
                     <Route path="*" element={<NotFound />} />
