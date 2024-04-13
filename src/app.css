@@ -1,7 +1,7 @@
 @font-face {
     font-family: 'Freshman';
-    src: url('fonts/Freshman.woff2') format('woff2'),
-        url('fonts/Freshman.woff') format('woff');
+    src: url('../public/fonts/Freshman.woff2') format('woff2'),
+        url('../public/fonts/Freshman.woff') format('woff');
     font-weight: normal;
     font-style: normal;
     font-display: swap;
